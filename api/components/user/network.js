@@ -1,13 +1,14 @@
-const express = require('express');
-const response = require('../../../network/response');
-const { getConnection } = require('../../../model/db')
+import { Router } from 'express';
+import { success } from '../../../network/response.js';
+import { getData } from '../../../models/db.js';
+import { getUser } from '../../../models/Users.js'
 
 
-const router = express.Router();
+const router = Router();
 
 router.post('/register', async function (req, res) {
     // Realizar conexión a DB
-    const client = await getConnection();
+    const client = await getData();
 
     let username = req.query.username;
     let email = req.query.email;
@@ -20,23 +21,32 @@ router.post('/register', async function (req, res) {
     };
 
     client.query(query_request)
-        .then(r => { response.success(req, res, r, 200); })
-        .catch(e => { response.success(req, res, e.detail, 200); });
+        .then(r => { success(req, res, r, 200); })
+        .catch(e => { success(req, res, e.detail, 200); });
 
 });
 
 router.get('/all_users', async function (req, res) {
-    const client = await getConnection();
-
+    const client = await getData.getConnection();
     const querys = {
-        text: 'SELECT * FROM usersdb',
+        text: 'SELECT * FROM tbl_usersdb',
     };
 
 
     client.query(querys)
-        .then(r => { response.success(req, res, r.rows, 200); })
-        .catch(e => { return e.stack });
+        .then(r => { res.send(r.rows) })
+        .catch(e => { console.log(e.stack) });
 });
 
-module.exports = router;
+router.get('/all_users_orm', async function (req, res) {
+getUser.findAll({ attributes: ['username', 'email', 'password', 'phone_number'] })
+    .then(users => {
+        res.send(users)
+    })
+    .catch(err => {
+        console.log(err)
+    })
+});
+
+export default router;
 
