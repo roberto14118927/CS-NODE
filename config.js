@@ -1,7 +1,6 @@
 import { config } from "dotenv";
 config({ path: process.ENV })
 
-// console.log(process.env.user);
 
 export const api = {
     port: process.env.API_PORT || 3000,
