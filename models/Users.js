@@ -29,7 +29,14 @@ const User = getData.sequelizeClient.define('cat_users', {
         type: DataTypes.STRING,
         allowNull: false,
     },
-    phone_number: DataTypes.STRING,
+    phone_number:  {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: {
+            arg: true,
+            msg: ''
+        },
+    },
 
 
 }, {
