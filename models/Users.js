@@ -22,7 +22,7 @@ const User = getData.sequelizeClient.define('cat_users', {
         allowNull: false,
         unique: {
             arg: true,
-            msg: 'This username is already taken.'
+            msg: ''
         },
     },
     password: {

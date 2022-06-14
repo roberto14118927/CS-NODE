@@ -26,6 +26,7 @@ router.post('/insert', async function (req, res) {
             res.send(users)
         })
         .catch(err => {
+            res.send(err)
             console.log(err)
         });
 });
