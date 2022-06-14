@@ -21,7 +21,7 @@ router.post('/insert', async function (req, res) {
         email: req.query.email,
         password: req.query.password,
         phone_number: req.query.phone_number
-    }, { fields: ['name', 'email', 'password', 'phone_number'] })
+    }, { fields: ['name', 'lastName', 'email', 'password', 'phone_number'] })
         .then(users => {
             res.send(users)
         })
