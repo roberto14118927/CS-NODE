@@ -2,15 +2,17 @@
   "name": "cs_2022",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "app.js",
   "type": "module",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node api/index.js"
+    "start": "node app.js",
+    "sequelize": "dotenv sequelize"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "bcrypt": "^5.0.1",
     "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "pg": "^8.7.3",
@@ -21,6 +23,6 @@
     "node": "16.14.0"
   },
   "devDependencies": {
-    "sequelize-cli": "^6.4.1"
+    "babel-register": "^6.26.0"
   }
 }
