@@ -4,12 +4,12 @@ import { db } from '../config/config.js';
 
 
 const sequelizeClient = new Sequelize(db.database, db.user, db.password, {
-    // dialectOptions: {
-    //     ssl: {
-    //         require: true,
-    //         rejectUnauthorized: false
-    //     }
-    // },
+    dialectOptions: {
+        ssl: {
+            require: true,
+            rejectUnauthorized: false
+        }
+    },
     host: db.host,
     dialect: 'postgres',
 });
