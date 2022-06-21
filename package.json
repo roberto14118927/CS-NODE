@@ -5,11 +5,12 @@
   "main": "app.js",
   "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node app.js",
+    "start:dev": "cross-env NODE_ENV=development nodemon app.js",
+    "start:test": "cross-env NODE_ENV=test nodemon app.js",
+    "start:prod": "cross-env NODE_ENV=production nodemon app.js",
     "sequelize": "dotenv sequelize"
   },
-  "author": "",
+  "author": "Roberto Eduardo Guzmán Ruiz",
   "license": "ISC",
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -23,6 +24,8 @@
     "node": "16.14.0"
   },
   "devDependencies": {
-    "babel-register": "^6.26.0"
+    "babel-register": "^6.26.0",
+    "cross-env": "^7.0.3",
+    "nodemon": "^2.0.16"
   }
 }
