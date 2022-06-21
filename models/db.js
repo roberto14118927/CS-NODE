@@ -14,36 +14,47 @@ const data = dotenv.config({
 });
 
 const sequelizeClient = (() => {
-    switch (process.env.NODE_ENV) {
-        case 'development':
-            return new Sequelize(db.database, db.user, db.password, {
-                host: db.host,
-                dialect: 'postgres',
-            });
+    Sequelize(process.env.DATABASE, process.env.USERS, process.env.PASSWORD, {
+        dialectOptions: {
+            ssl: {
+                require: true,
+                rejectUnauthorized: false
+            }
+        },
+        host: process.env.HOST,
+        dialect: 'postgres',
+    });
+    
+    // switch (process.env.NODE_ENV) {
+    //     case 'development':
+    //         return new Sequelize(db.database, db.user, db.password, {
+    //             host: db.host,
+    //             dialect: 'postgres',
+    //         });
 
-        case 'test':
-            return new Sequelize(db.database, db.user, db.password, {
-                dialectOptions: {
-                    ssl: {
-                        require: true,
-                        rejectUnauthorized: false
-                    }
-                },
-                host: db.host,
-                dialect: 'postgres',
-            });
+    //     case 'test':
+    //         return new Sequelize(db.database, db.user, db.password, {
+    //             dialectOptions: {
+    //                 ssl: {
+    //                     require: true,
+    //                     rejectUnauthorized: false
+    //                 }
+    //             },
+    //             host: db.host,
+    //             dialect: 'postgres',
+    //         });
 
-        default:
-            return new Sequelize(db.database, db.user, db.password, {
-                dialectOptions: {
-                    ssl: {
-                        require: true,
-                    }
-                },
-                host: db.host,
-                dialect: 'postgres',
-            });
-    }
+    //     default:
+    //         return new Sequelize(db.database, db.user, db.password, {
+    //             dialectOptions: {
+    //                 ssl: {
+    //                     require: true,
+    //                 }
+    //             },
+    //             host: db.host,
+    //             dialect: 'postgres',
+    //         });
+    // }
 })();
 
 
