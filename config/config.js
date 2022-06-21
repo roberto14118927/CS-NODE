@@ -18,7 +18,7 @@ export const db = {
 };
 
 export const api = {
-    port: data.parsed.PORT,
+    port: process.env.PORT,
 };
 
 
