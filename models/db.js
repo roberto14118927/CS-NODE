@@ -14,7 +14,7 @@ const data = dotenv.config({
 });
 
 const sequelizeClient = (() => {
-    Sequelize(process.env.DATABASE, process.env.USERS, process.env.PASSWORD, {
+    return new Sequelize(process.env.DATABASE, process.env.USERS, process.env.PASSWORD, {
         dialectOptions: {
             ssl: {
                 require: true,
@@ -24,7 +24,7 @@ const sequelizeClient = (() => {
         host: process.env.HOST,
         dialect: 'postgres',
     });
-    
+
     // switch (process.env.NODE_ENV) {
     //     case 'development':
     //         return new Sequelize(db.database, db.user, db.password, {
