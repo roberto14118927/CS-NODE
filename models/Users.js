@@ -17,6 +17,10 @@ const User = getData.sequelizeClient.define('cat_users', {
         type: DataTypes.STRING,
         allowNull: false,
     },
+    address: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
     email: {
         type: DataTypes.STRING,
         allowNull: false,
