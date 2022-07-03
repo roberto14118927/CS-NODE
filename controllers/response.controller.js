@@ -18,4 +18,4 @@ export function error(req, res, message, status) {
         status: status,
         body: statusMessage,
     });
-}
+}  

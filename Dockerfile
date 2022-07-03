@@ -1,19 +1,16 @@
 FROM node:16
 
-WORKDIR /Users/robertoguzman/Documents/Node_Project/CS_2022
+WORKDIR /app_rest
 
-# Install app dependencies
-# A wildcard is used to ensure both package.json AND package-lock.json are copied
-# where available (npm@5+)
 COPY package*.json ./
+COPY environments/.env.development /app_rest/
+COPY environments/.env.production /app_rest/
+COPY environments/.env.test /app_rest/
 
 RUN npm install
-# If you are building your code for production
-# RUN npm ci --only=production
 
-# Bundle app source
 COPY . .
 
 EXPOSE 3000
 
-CMD [ "node", "app.js" ]
+CMD [ "npm", "run", "start:test" ]

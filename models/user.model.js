@@ -1,6 +1,6 @@
-import { getData } from './db.js';
+import { getData } from '../config/dbConnection.js';
 import { DataTypes } from 'sequelize';
-import bcrypt from 'bcrypt';
+import bcryptjs from 'bcryptjs';
 
 const User = getData.sequelizeClient.define('cat_users', {
     id: {
@@ -12,14 +12,11 @@ const User = getData.sequelizeClient.define('cat_users', {
     name: {
         type: DataTypes.STRING,
         allowNull: false,
-    },
-    last_name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    address: {
-        type: DataTypes.STRING,
-        allowNull: false,
+        validate: {
+            notNull: {
+                msg: 'Ingrese un nombre'
+            }
+        }
     },
     email: {
         type: DataTypes.STRING,
@@ -28,20 +25,21 @@ const User = getData.sequelizeClient.define('cat_users', {
             arg: true,
             msg: ''
         },
+        validate: {
+            notNull: {
+                msg: 'Ingrese un correo'
+            }
+        }
     },
     password: {
         type: DataTypes.STRING,
         allowNull: false,
+        validate: {
+            notNull: {
+                msg: 'Ingrese una contraseña'
+            }
+        }
     },
-    phone_number:  {
-        type: DataTypes.STRING,
-        allowNull: false,
-        unique: {
-            arg: true,
-            msg: ''
-        },
-    },
-
 
 }, {
     tableName: 'cat_users',
@@ -49,7 +47,7 @@ const User = getData.sequelizeClient.define('cat_users', {
     hooks: {
         beforeCreate: (user, options) => {
             {
-                user.password = user.password && user.password != "" ? bcrypt.hashSync(user.password, 10) : "";
+                user.password = user.password && user.password != "" ? bcryptjs.hashSync(user.password, 10) : "";
             }
         }
     }
