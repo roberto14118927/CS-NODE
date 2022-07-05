@@ -18,6 +18,6 @@ app.use('/api/user', user);
 // SERVIDOR ACTIVO
 app.listen(api.port, () => {
     console.log(`Servidor corriento en el puerto => ${api.port}`);
-    swaggerDocs(app, api.port)
+    swaggerDocs(app, api.port);
 });
 
