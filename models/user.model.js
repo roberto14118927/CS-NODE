@@ -1,4 +1,4 @@
-import { getData } from '../config/dbConnection.js';
+import { getData } from '../config/connection.config.js';
 import { DataTypes } from 'sequelize';
 import bcryptjs from 'bcryptjs';
 

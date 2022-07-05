@@ -14,11 +14,11 @@ const data = dotenv.config({
 
 const user_create = (req, res) => {
     getUser.create({
-        name: req.query.name,
-        email: req.query.email,
-        password: req.query.password,
-        phone_number: req.query.phone_number,
-        last_name: req.query.last_name
+        name: req.body.name,
+        email: req.body.email,
+        password: req.body.password,
+        phone_number: req.body.phone_number,
+        last_name: req.body.last_name
 
     }, { fields: ['name', 'email', 'password'] })
         .then(users => {

@@ -1,11 +1,12 @@
-import { dataEnv } from './envData.js';
+import { dataEnv } from './env.config.js';
 
 
 export const db = {
-    user: dataEnv.parsed.USERS,
-    host: dataEnv.parsed.HOST,
-    database: dataEnv.parsed.DATABASE,
-    password: dataEnv.parsed.PASSWORD,
+    user: dataEnv.parsed.USERDB,
+    host: dataEnv.parsed.HOSTDB,
+    database: dataEnv.parsed.DATABASEDB,
+    password: dataEnv.parsed.PASSWORDDB,
+    portdb: dataEnv.parsed.PORTDB,
 };
 
 export const api = {

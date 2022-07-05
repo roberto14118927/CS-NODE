@@ -1,6 +1,6 @@
 import { api } from './config/config.js';
-import swaggerDocs from './config/swagger.js';
-import middleware from './middlewares/validateToken.js'
+import swaggerDocs from './config/swagger.config.js';
+import middleware from './middlewares/token.middleware.js'
 
 import express from 'express';
 
@@ -9,6 +9,7 @@ import user from './routes/user.routes.js';
 
 const app = express();
 
+app.use(express.json());
 // ROUTERS
 app.use('/api/user', user);
 // app.use('/api/profile', middleware, profile);

@@ -6,6 +6,7 @@ const sequelizeClient = (() => {
         case 'development':
             return new Sequelize(db.database, db.user, db.password, {
                 host: db.host,
+                port: db.portdb,
                 dialect: 'postgres',
             });
 
