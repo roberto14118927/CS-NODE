@@ -7,6 +7,7 @@ export const db = {
     database: dataEnv.parsed.DATABASEDB,
     password: dataEnv.parsed.PASSWORDDB,
     portdb: dataEnv.parsed.PORTDB,
+    key_email: dataEnv.parsed.SENDGRID_API_KEY,
 };
 
 export const api = {

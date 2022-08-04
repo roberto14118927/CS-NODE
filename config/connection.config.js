@@ -12,32 +12,35 @@ const sequelizeClient = (() => {
 
         case 'test':
             return new Sequelize(db.database, db.user, db.password, {
+                port: db.portdb,
+                host: db.host,
+                dialect: 'postgres',
                 dialectOptions: {
                     ssl: {
                         require: true,
                         rejectUnauthorized: false
                     }
                 },
-                host: db.host,
-                dialect: 'postgres',
             });
 
         default:
             return new Sequelize(db.database, db.user, db.password, {
+                port: db.portdb,
+                host: db.host,
+                dialect: 'postgres',
                 dialectOptions: {
                     ssl: {
                         require: true,
+                        rejectUnauthorized: false
                     }
                 },
-                host: db.host,
-                dialect: 'postgres',
             });
     }
 })();
 
 
 
-sequelizeClient.sync({ alert: true })
+sequelizeClient.sync({ force: true })
     .then(() => {
         console.log('Conectado')
     })

@@ -45,15 +45,51 @@ const User = getData.sequelizeClient.define('cat_users', {
     tableName: 'cat_users',
     freezeTableName: true,
     hooks: {
-        beforeCreate: (user, options) => {
+        beforeCreate: async (user, options) => {
             {
-                user.password = user.password && user.password != "" ? bcryptjs.hashSync(user.password, 10) : "";
+                const salt = await bcryptjs.genSaltSync(10);
+                user.password = user.password && user.password != "" ? bcryptjs.hashSync(user.password, salt) : "";
             }
         }
     }
 
 });
 
+const UserRecovery = getData.sequelizeClient.define('cat_user_recovery', {
+    id: {
+        type: DataTypes.UUID,
+        defaultValue: DataTypes.UUIDV4,
+        allowNull: false,
+        primaryKey: true
+    },
+    email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        unique: {
+            arg: true,
+            msg: ''
+        },
+        validate: {
+            notNull: {
+                msg: 'Ingrese un correo'
+            }
+        }
+    },
+    token: {
+        type: DataTypes.STRING,
+        allowNull: false,
+    },
+    status: {
+        type: DataTypes.BOOLEAN,
+        allowNull: false,
+        default: false,
+    },
+
+}, {
+    tableName: 'cat_user_recovery',
+    freezeTableName: true
+});
 
 
-export const getUser = User;
+
+export const getUser = { User, UserRecovery };
